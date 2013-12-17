@@ -316,20 +316,17 @@ public class NetCmds
 				return url;
 				}
 			sc = new Scanner(is);
-			sc.useDelimiter("id=\"(Descrip|Nota)tion\"");
+			sc.useDelimiter("id=\"FuncTitle\"");
 
 			sc.next();
 			String which = sc.nextLine();
 			if (which.contains("Nota"))
 				not = sc.nextLine();
-			else
-				def = sc.nextLine();
 
+			sc.useDelimiter("id=\"Description\"");
 			sc.next();
 			which = sc.nextLine();
-			if (which.contains("Nota"))
-				not = sc.nextLine();
-			else
+			if (which.contains("Descrip"))
 				def = sc.nextLine();
 			}
 		catch (NoSuchElementException e)
@@ -370,10 +367,12 @@ public class NetCmds
 			}
 
 		if (not == null) return "Unknown EDL function: " + oarg;
-		if (def == null) return (not + " (YYG) " + getGmWiki(arg));
+		if (def == null) return (not);// + " (YYG) " + getGmWiki(arg));
 		return not + ' ' + def;
 		}
 
+	// this should be removed as the YYG Wiki has been taken down and replaced with the Knowledge Base
+	// all Wiki links turn up 404, it could instead check http://docs.yoyogames.com
 	public static String getGmWiki(String arg)
 		{
 		String url = "http://wiki.yoyogames.com/index.php/" + arg;
