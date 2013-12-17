@@ -320,14 +320,14 @@ public class NetCmds
 
 			sc.next();
 			String which = sc.nextLine();
-			if (which.contains("Nota"))
+			if (which.contains("Nota") || which.contains("Descrip"))
 				not = sc.nextLine();
 			else
 				def = sc.nextLine();
 
 			sc.next();
 			which = sc.nextLine();
-			if (which.contains("Nota"))
+			if (which.contains("Nota") || which.contains("Descrip"))
 				not = sc.nextLine();
 			else
 				def = sc.nextLine();
@@ -370,11 +370,11 @@ public class NetCmds
 			}
 
 		if (not == null) return "Unknown EDL function: " + oarg;
-		if (def == null) return (not + " (YYG) " + getGmWiki(arg));
+		if (def == null) return (not + " (YYG) " + getGmManual(arg));
 		return not + ' ' + def;
 		}
 
-	public static String getGmWiki(String arg)
+	public static String getGmManual(String arg)
 		{
 		String url = "http://wiki.yoyogames.com/index.php/" + arg;
 		String def = null;
